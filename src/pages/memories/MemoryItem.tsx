@@ -44,8 +44,8 @@ const MemoryItem: React.FC<SpeakerItemProps> = ({speaker, sessions}) => {
 
       <IonCard className={classes.memoryCard} onClick={()=> setShowToast1(true)}   color={'light-shade'}>
 
-        <IonCardHeader>
-          <IonCardTitle>{speaker.name}</IonCardTitle>
+        <IonCardHeader >
+          <IonCardTitle >{speaker.name}</IonCardTitle>
         </IonCardHeader>
 
         <IonCardContent>

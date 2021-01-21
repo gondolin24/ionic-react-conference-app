@@ -72,7 +72,7 @@ const LibraryMainPage: React.FC<SchedulePageProps> = ({favoritesSchedule, schedu
           </IonButtons>
           }
           {!showSearchbar &&
-          <IonTitle>Schedule</IonTitle>
+          <IonTitle>Library</IonTitle>
           }
           {showSearchbar &&
           <IonSearchbar showCancelButton="always" placeholder="Search"
@@ -94,16 +94,6 @@ const LibraryMainPage: React.FC<SchedulePageProps> = ({favoritesSchedule, schedu
           </IonButtons>
         </IonToolbar>
 
-        <IonToolbar>
-          <IonSegment value={segment} onIonChange={(e) => setSegment(e.detail.value as any)}>
-            <IonSegmentButton value="all">
-              SONGS
-            </IonSegmentButton>
-            <IonSegmentButton value="favorites">
-              STORIES
-            </IonSegmentButton>
-          </IonSegment>
-        </IonToolbar>
 
       </IonHeader>
 

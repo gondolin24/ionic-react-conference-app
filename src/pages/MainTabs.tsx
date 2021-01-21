@@ -18,6 +18,7 @@ import MapView from './MapView';
 import About from './About';
 import MemoriesList from "./memories/MemoriesList";
 import LibraryMainPage from "./library/LibraryMainPage";
+import LibraryDetail from "./library/LibraryDetail";
 
 interface MainTabsProps { }
 
@@ -37,6 +38,7 @@ const MainTabs: React.FC<MainTabsProps> = () => {
         <Route path="/tabs/library" render={() => <LibraryMainPage />} exact={true} />
         <Route path="/tabs/speakers/:id" component={SpeakerDetail} exact={true} />
         <Route path="/tabs/schedule/:id" component={SessionDetail} />
+        <Route path="/tabs/library/:id" component={LibraryDetail} />
         <Route path="/tabs/speakers/sessions/:id" component={SessionDetail} />
         <Route path="/tabs/about" render={() => <About />} exact={true} />
       </IonRouterOutlet>

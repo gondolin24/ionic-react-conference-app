@@ -1,12 +1,12 @@
 import React, {useRef, useState} from 'react';
 
 import {
-  getConfig,
+  getConfig, IonAvatar,
   IonButton,
   IonButtons,
   IonContent,
   IonHeader,
-  IonIcon,
+  IonIcon, IonItem,
   IonMenuButton,
   IonModal,
   IonPage,
@@ -31,6 +31,7 @@ import * as selectors from '../data/selectors';
 import {connect} from '../data/connect';
 import {setSearchText} from '../data/sessions/sessions.actions';
 import {Schedule} from '../models/Schedule';
+import Carousel from "react-multi-carousel";
 
 interface OwnProps {
 }
@@ -73,7 +74,7 @@ const MainStorePage: React.FC<SchedulePageProps> = ({favoritesSchedule, schedule
           </IonButtons>
           }
           {!showSearchbar &&
-          <IonTitle>Schedule</IonTitle>
+          <IonTitle>Store</IonTitle>
           }
           {showSearchbar &&
           <IonSearchbar showCancelButton="always" placeholder="Search"
@@ -85,11 +86,6 @@ const MainStorePage: React.FC<SchedulePageProps> = ({favoritesSchedule, schedule
             {!showSearchbar &&
             <IonButton onClick={() => setShowSearchbar(true)}>
               <IonIcon slot="icon-only" icon={search}></IonIcon>
-            </IonButton>
-            }
-            {!showSearchbar &&
-            <IonButton onClick={() => setShowFilterModal(true)}>
-              {mode === 'ios' ? 'Filter' : <IonIcon icon={options} slot="icon-only"/>}
             </IonButton>
             }
           </IonButtons>
