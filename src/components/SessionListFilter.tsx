@@ -84,9 +84,6 @@ const SessionListFilter: React.FC<SessionListFilterProps> = ({ allTracks, filter
 
           {allTracks.map((track, index) => (
             <IonItem key={track}>
-              { ios &&
-                <IonIcon slot="start" icon={iconMap[track]} color="medium" />
-              }
               <IonLabel>{track}</IonLabel>
               <IonCheckbox
                 onClick={() => toggleTrackFilter(track)}
