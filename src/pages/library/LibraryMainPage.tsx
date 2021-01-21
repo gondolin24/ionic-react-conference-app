@@ -21,16 +21,15 @@ import {
 } from '@ionic/react';
 import {options, search} from 'ionicons/icons';
 
-import SessionList from '../components/SessionList';
-import SessionListFilter from '../components/SessionListFilter';
-import './MainStorePage.scss'
+import SessionList from '../../components/SessionList';
+import SessionListFilter from '../../components/SessionListFilter';
+import '../MainStorePage.scss'
 
-import ShareSocialFab from '../components/ShareSocialFab';
 
-import * as selectors from '../data/selectors';
-import {connect} from '../data/connect';
-import {setSearchText} from '../data/sessions/sessions.actions';
-import {Schedule} from '../models/Schedule';
+import * as selectors from '../../data/selectors';
+import {connect} from '../../data/connect';
+import {setSearchText} from '../../data/sessions/sessions.actions';
+import {Schedule} from '../../models/Schedule';
 
 interface OwnProps {
 }
@@ -47,7 +46,7 @@ interface DispatchProps {
 
 type SchedulePageProps = OwnProps & StateProps & DispatchProps;
 
-const MainStorePage: React.FC<SchedulePageProps> = ({favoritesSchedule, schedule, setSearchText, mode}) => {
+const LibraryMainPage: React.FC<SchedulePageProps> = ({favoritesSchedule, schedule, setSearchText, mode}) => {
   const [segment, setSegment] = useState<'all' | 'favorites'>('all');
   const [showSearchbar, setShowSearchbar] = useState<boolean>(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
@@ -111,7 +110,7 @@ const MainStorePage: React.FC<SchedulePageProps> = ({favoritesSchedule, schedule
       <IonContent fullscreen={true}>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Schedule</IonTitle>
+            <IonTitle size="large">LibraryMainPage</IonTitle>
           </IonToolbar>
           <IonToolbar>
             <IonSearchbar placeholder="Search"
@@ -123,12 +122,6 @@ const MainStorePage: React.FC<SchedulePageProps> = ({favoritesSchedule, schedule
           <IonRefresherContent/>
         </IonRefresher>
 
-        <IonToast
-          isOpen={showCompleteToast}
-          message="Refresh complete"
-          duration={2000}
-          onDidDismiss={() => setShowCompleteToast(false)}
-        />
 
         <SessionList
           schedule={schedule}
@@ -168,5 +161,5 @@ export default connect<OwnProps, StateProps, DispatchProps>({
   mapDispatchToProps: {
     setSearchText
   },
-  component: React.memo(MainStorePage)
+  component: React.memo(LibraryMainPage)
 });

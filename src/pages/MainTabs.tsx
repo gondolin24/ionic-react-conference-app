@@ -17,6 +17,7 @@ import SessionDetail from './SessionDetail';
 import MapView from './MapView';
 import About from './About';
 import MemoriesList from "./memories/MemoriesList";
+import LibraryMainPage from "./library/LibraryMainPage";
 
 interface MainTabsProps { }
 
@@ -33,7 +34,7 @@ const MainTabs: React.FC<MainTabsProps> = () => {
         <Route path="/tabs/live" render={() => <SchedulePage />} exact={true} />
         <Route path="/tabs/memories" render={() => <MemoriesList />} exact={true} />
         <Route path="/tabs/store" render={() => <SchedulePage />} exact={true} />
-        <Route path="/tabs/library" render={() => <MemoriesList />} exact={true} />
+        <Route path="/tabs/library" render={() => <LibraryMainPage />} exact={true} />
         <Route path="/tabs/speakers/:id" component={SpeakerDetail} exact={true} />
         <Route path="/tabs/schedule/:id" component={SessionDetail} />
         <Route path="/tabs/speakers/sessions/:id" component={SessionDetail} />
