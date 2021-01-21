@@ -1,17 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Session} from '../../models/Schedule';
 import {Speaker} from '../../models/Speaker';
-import {
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle, IonCardTitle,
-  IonChip,
-  IonIcon,
-  IonItem,
-  IonLabel
-} from '@ionic/react';
-import {shareSocial} from "ionicons/icons";
+import {IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonLoading, IonToast} from '@ionic/react';
 import {createUseStyles} from "react-jss";
 
 
@@ -29,16 +19,30 @@ const useStyles = createUseStyles({
       self: 'center',
       items: 'center',
     }
+  },
+  memoryCard: {
+    background: 'danger'
   }
 })
 
 
 const MemoryItem: React.FC<SpeakerItemProps> = ({speaker, sessions}) => {
-  const classes = useStyles()
 
+  const [showToast1, setShowToast1] = useState(false);
+  const messageTitle = `Selected ${speaker.name}`
+
+  const classes = useStyles()
   return (
-    <>
-      <IonCard>
+      <div>
+        <IonToast
+          isOpen={showToast1}
+          onDidDismiss={() => setShowToast1(false)}
+          message = {messageTitle}
+          duration={200}
+        />
+
+
+      <IonCard className={classes.memoryCard} onClick={()=> setShowToast1(true)}   color={'light-shade'}>
 
         <IonCardHeader>
           <IonCardTitle>{speaker.name}</IonCardTitle>
@@ -48,20 +52,11 @@ const MemoryItem: React.FC<SpeakerItemProps> = ({speaker, sessions}) => {
 
           <img src={speaker.profilePic}/>
 
-          <div className={classes.shareArea}>
-            <IonItem detail={false} routerLink={`/tabs/speakers/${speaker.id}`} lines="none">
-              <IonChip color="instagram">
-                <IonIcon icon={shareSocial}/>
-                <IonLabel>Share</IonLabel>
-              </IonChip>
-
-            </IonItem>
-          </div>
-
         </IonCardContent>
 
       </IonCard>
-    </>
+      </div>
+
   );
 };
 

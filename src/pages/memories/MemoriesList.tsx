@@ -17,6 +17,7 @@ import {connect} from '../../data/connect';
 import * as selectors from '../../data/selectors';
 import '../SpeakerList.scss';
 import MemoryItem from "./MemoryItem";
+import ShareSocialFab from "../../components/ShareSocialFab";
 
 
 interface OwnProps {
@@ -34,6 +35,7 @@ interface SpeakerListProps extends OwnProps, StateProps, DispatchProps {
 };
 
 const MemoriesList: React.FC<SpeakerListProps> = ({speakers, speakerSessions}) => {
+
 
   return (
     <IonPage id="speaker-list">
@@ -67,6 +69,10 @@ const MemoriesList: React.FC<SpeakerListProps> = ({speakers, speakerSessions}) =
           </IonRow>
         </IonGrid>
       </IonContent>
+
+
+      <ShareSocialFab/>
+
     </IonPage>
   );
 };
