@@ -8,6 +8,7 @@ import SessionDetail from './SessionDetail';
 import MemoriesList from "./memories/MemoriesList";
 import LibraryMainPage from "./library/LibraryMainPage";
 import LibraryDetail from "./library/LibraryDetail";
+import LivePage from "./live/LivePage";
 
 interface MainTabsProps {
 }
@@ -22,7 +23,7 @@ const MainTabs: React.FC<MainTabsProps> = () => {
           Using the render method prop cuts down the number of renders your components will have due to route changes.
           Use the component prop when your component depends on the RouterComponentProps passed in automatically.
         */}
-        <Route path="/tabs/live" render={() => <SchedulePage/>} exact={true}/>
+        <Route path="/tabs/live" render={() => <LivePage/>} exact={true}/>
         <Route path="/tabs/memories" render={() => <MemoriesList/>} exact={true}/>
         <Route path="/tabs/store" render={() => <SchedulePage/>} exact={true}/>
         <Route path="/tabs/library" render={() => <LibraryMainPage/>} exact={true}/>
