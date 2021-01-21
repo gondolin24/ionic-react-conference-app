@@ -11,7 +11,7 @@ import {
   people,
   peopleOutline
 } from 'ionicons/icons';
-import SchedulePage from './SchedulePage';
+import SchedulePage from './MainStorePage';
 import SpeakerDetail from './SpeakerDetail';
 import SessionDetail from './SessionDetail';
 import MapView from './MapView';

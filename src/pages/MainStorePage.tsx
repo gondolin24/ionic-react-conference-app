@@ -23,7 +23,7 @@ import {options, search} from 'ionicons/icons';
 
 import SessionList from '../components/SessionList';
 import SessionListFilter from '../components/SessionListFilter';
-import './SchedulePage.scss'
+import './MainStorePage.scss'
 
 import ShareSocialFab from '../components/ShareSocialFab';
 
@@ -47,7 +47,7 @@ interface DispatchProps {
 
 type SchedulePageProps = OwnProps & StateProps & DispatchProps;
 
-const SchedulePage: React.FC<SchedulePageProps> = ({favoritesSchedule, schedule, setSearchText, mode}) => {
+const MainStorePage: React.FC<SchedulePageProps> = ({favoritesSchedule, schedule, setSearchText, mode}) => {
   const [segment, setSegment] = useState<'all' | 'favorites'>('all');
   const [showSearchbar, setShowSearchbar] = useState<boolean>(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
@@ -170,5 +170,5 @@ export default connect<OwnProps, StateProps, DispatchProps>({
   mapDispatchToProps: {
     setSearchText
   },
-  component: React.memo(SchedulePage)
+  component: React.memo(MainStorePage)
 });
