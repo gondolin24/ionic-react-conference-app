@@ -16,7 +16,7 @@ const SpeakerItem: React.FC<SpeakerItemProps> = ({ speaker, sessions }) => {
         <IonCardHeader>
           <IonItem button detail={false} lines="none" className="speaker-item" routerLink={`/tabs/speakers/${speaker.id}`}>
             <IonAvatar slot="start">
-              <img src={process.env.PUBLIC_URL + speaker.profilePic} alt="Speaker profile pic" />
+              <img src={'https://momlovesbest.com/wp-content/uploads/2018/07/How_To_Keep_Toddler_In_Crib-1.jpg'} alt="Speaker profile pic" />
             </IonAvatar>
             <IonLabel>
               <h2>{speaker.name}</h2>

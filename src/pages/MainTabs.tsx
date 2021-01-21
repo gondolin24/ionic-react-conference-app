@@ -1,13 +1,22 @@
-import React  from 'react';
-import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
-import { Route, Redirect } from 'react-router';
-import { calendar, location, informationCircle, people } from 'ionicons/icons';
+import React from 'react';
+import {IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs} from '@ionic/react';
+import {Redirect, Route} from 'react-router';
+import {
+  book, briefcase, briefcaseOutline,
+  calendar,
+  camera,
+  cameraOutline,
+  informationCircle,
+  location,
+  people,
+  peopleOutline
+} from 'ionicons/icons';
 import SchedulePage from './SchedulePage';
-import SpeakerList from './SpeakerList';
 import SpeakerDetail from './SpeakerDetail';
 import SessionDetail from './SessionDetail';
 import MapView from './MapView';
 import About from './About';
+import MemoriesList from "./memories/MemoriesList";
 
 interface MainTabsProps { }
 
@@ -21,30 +30,31 @@ const MainTabs: React.FC<MainTabsProps> = () => {
           Using the render method prop cuts down the number of renders your components will have due to route changes.
           Use the component prop when your component depends on the RouterComponentProps passed in automatically.
         */}
-        <Route path="/tabs/schedule" render={() => <SchedulePage />} exact={true} />
-        <Route path="/tabs/speakers" render={() => <SpeakerList />} exact={true} />
+        <Route path="/tabs/live" render={() => <SchedulePage />} exact={true} />
+        <Route path="/tabs/memories" render={() => <MemoriesList />} exact={true} />
+        <Route path="/tabs/store" render={() => <SchedulePage />} exact={true} />
+        <Route path="/tabs/library" render={() => <MemoriesList />} exact={true} />
         <Route path="/tabs/speakers/:id" component={SpeakerDetail} exact={true} />
         <Route path="/tabs/schedule/:id" component={SessionDetail} />
         <Route path="/tabs/speakers/sessions/:id" component={SessionDetail} />
-        <Route path="/tabs/map" render={() => <MapView />} exact={true} />
         <Route path="/tabs/about" render={() => <About />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
-        <IonTabButton tab="schedule" href="/tabs/schedule">
-          <IonIcon icon={calendar} />
-          <IonLabel>Schedule</IonLabel>
+        <IonTabButton tab="live" href="/tabs/live">
+          <IonIcon icon={camera} />
+          <IonLabel>Live</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="speakers" href="/tabs/speakers">
+        <IonTabButton tab="memories" href="/tabs/memories">
           <IonIcon icon={people} />
-          <IonLabel>Speakers</IonLabel>
+          <IonLabel>Memories</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="map" href="/tabs/map">
-          <IonIcon icon={location} />
-          <IonLabel>Map</IonLabel>
+        <IonTabButton tab="library" href="/tabs/library">
+          <IonIcon icon={book} />
+          <IonLabel>Library</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="about" href="/tabs/about">
-          <IonIcon icon={informationCircle} />
-          <IonLabel>About</IonLabel>
+        <IonTabButton tab="store" href="/tabs/store">
+          <IonIcon icon={briefcase} />
+          <IonLabel>Store</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>

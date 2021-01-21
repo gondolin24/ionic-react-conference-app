@@ -81,7 +81,6 @@ const SessionListFilter: React.FC<SessionListFilterProps> = ({ allTracks, filter
 
       <IonContent>
         <IonList lines={ ios ? 'inset' : 'full'}>
-          <IonListHeader>Tracks</IonListHeader>
 
           {allTracks.map((track, index) => (
             <IonItem key={track}>

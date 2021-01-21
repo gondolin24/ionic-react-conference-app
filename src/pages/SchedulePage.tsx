@@ -1,7 +1,25 @@
-import React, { useState, useRef } from 'react';
+import React, {useRef, useState} from 'react';
 
-import { IonToolbar, IonContent, IonPage, IonButtons, IonTitle, IonMenuButton, IonSegment, IonSegmentButton, IonButton, IonIcon, IonSearchbar, IonRefresher, IonRefresherContent, IonToast, IonModal, IonHeader, getConfig } from '@ionic/react';
-import { options, search } from 'ionicons/icons';
+import {
+  getConfig,
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonMenuButton,
+  IonModal,
+  IonPage,
+  IonRefresher,
+  IonRefresherContent,
+  IonSearchbar,
+  IonSegment,
+  IonSegmentButton,
+  IonTitle,
+  IonToast,
+  IonToolbar
+} from '@ionic/react';
+import {options, search} from 'ionicons/icons';
 
 import SessionList from '../components/SessionList';
 import SessionListFilter from '../components/SessionListFilter';
@@ -10,11 +28,12 @@ import './SchedulePage.scss'
 import ShareSocialFab from '../components/ShareSocialFab';
 
 import * as selectors from '../data/selectors';
-import { connect } from '../data/connect';
-import { setSearchText } from '../data/sessions/sessions.actions';
-import { Schedule } from '../models/Schedule';
+import {connect} from '../data/connect';
+import {setSearchText} from '../data/sessions/sessions.actions';
+import {Schedule} from '../models/Schedule';
 
-interface OwnProps { }
+interface OwnProps {
+}
 
 interface StateProps {
   schedule: Schedule;
@@ -28,7 +47,7 @@ interface DispatchProps {
 
 type SchedulePageProps = OwnProps & StateProps & DispatchProps;
 
-const SchedulePage: React.FC<SchedulePageProps> = ({ favoritesSchedule, schedule, setSearchText, mode }) => {
+const SchedulePage: React.FC<SchedulePageProps> = ({favoritesSchedule, schedule, setSearchText, mode}) => {
   const [segment, setSegment] = useState<'all' | 'favorites'>('all');
   const [showSearchbar, setShowSearchbar] = useState<boolean>(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
@@ -36,8 +55,6 @@ const SchedulePage: React.FC<SchedulePageProps> = ({ favoritesSchedule, schedule
   const [showCompleteToast, setShowCompleteToast] = useState(false);
 
   const pageRef = useRef<HTMLElement>(null);
-
-  const ios = mode === 'ios';
 
   const doRefresh = () => {
     setTimeout(() => {
@@ -51,53 +68,44 @@ const SchedulePage: React.FC<SchedulePageProps> = ({ favoritesSchedule, schedule
       <IonHeader translucent={true}>
         <IonToolbar>
           {!showSearchbar &&
-            <IonButtons slot="start">
-              <IonMenuButton />
-            </IonButtons>
+          <IonButtons slot="start">
+            <IonMenuButton/>
+          </IonButtons>
           }
-          {ios &&
-            <IonSegment value={segment} onIonChange={(e) => setSegment(e.detail.value as any)}>
-              <IonSegmentButton value="all">
-                All
-              </IonSegmentButton>
-              <IonSegmentButton value="favorites">
-                Favorites
-              </IonSegmentButton>
-            </IonSegment>
-          }
-          {!ios && !showSearchbar &&
-            <IonTitle>Schedule</IonTitle>
+          {!showSearchbar &&
+          <IonTitle>Schedule</IonTitle>
           }
           {showSearchbar &&
-            <IonSearchbar showCancelButton="always" placeholder="Search" onIonChange={(e: CustomEvent) => setSearchText(e.detail.value)} onIonCancel={() => setShowSearchbar(false)}></IonSearchbar>
+          <IonSearchbar showCancelButton="always" placeholder="Search"
+                        onIonChange={(e: CustomEvent) => setSearchText(e.detail.value)}
+                        onIonCancel={() => setShowSearchbar(false)}></IonSearchbar>
           }
 
           <IonButtons slot="end">
-            {!ios && !showSearchbar &&
-              <IonButton onClick={() => setShowSearchbar(true)}>
-                <IonIcon slot="icon-only" icon={search}></IonIcon>
-              </IonButton>
+            {!showSearchbar &&
+            <IonButton onClick={() => setShowSearchbar(true)}>
+              <IonIcon slot="icon-only" icon={search}></IonIcon>
+            </IonButton>
             }
             {!showSearchbar &&
-              <IonButton onClick={() => setShowFilterModal(true)}>
-                {mode === 'ios' ? 'Filter' : <IonIcon icon={options} slot="icon-only" />}
-              </IonButton>
+            <IonButton onClick={() => setShowFilterModal(true)}>
+              {mode === 'ios' ? 'Filter' : <IonIcon icon={options} slot="icon-only"/>}
+            </IonButton>
             }
           </IonButtons>
         </IonToolbar>
 
-        {!ios &&
-          <IonToolbar>
-            <IonSegment value={segment} onIonChange={(e) => setSegment(e.detail.value as any)}>
-              <IonSegmentButton value="all">
-                All
-              </IonSegmentButton>
-              <IonSegmentButton value="favorites">
-                Favorites
-              </IonSegmentButton>
-            </IonSegment>
-          </IonToolbar>
-        }
+        <IonToolbar>
+          <IonSegment value={segment} onIonChange={(e) => setSegment(e.detail.value as any)}>
+            <IonSegmentButton value="all">
+              SONGS
+            </IonSegmentButton>
+            <IonSegmentButton value="favorites">
+              STORIES
+            </IonSegmentButton>
+          </IonSegment>
+        </IonToolbar>
+
       </IonHeader>
 
       <IonContent fullscreen={true}>
@@ -106,12 +114,13 @@ const SchedulePage: React.FC<SchedulePageProps> = ({ favoritesSchedule, schedule
             <IonTitle size="large">Schedule</IonTitle>
           </IonToolbar>
           <IonToolbar>
-            <IonSearchbar placeholder="Search" onIonChange={(e: CustomEvent) => setSearchText(e.detail.value)}></IonSearchbar>
+            <IonSearchbar placeholder="Search"
+                          onIonChange={(e: CustomEvent) => setSearchText(e.detail.value)}></IonSearchbar>
           </IonToolbar>
         </IonHeader>
 
         <IonRefresher slot="fixed" ref={ionRefresherRef} onIonRefresh={doRefresh}>
-          <IonRefresherContent />
+          <IonRefresherContent/>
         </IonRefresher>
 
         <IonToast
@@ -146,7 +155,7 @@ const SchedulePage: React.FC<SchedulePageProps> = ({ favoritesSchedule, schedule
         />
       </IonModal>
 
-      <ShareSocialFab />
+      <ShareSocialFab/>
 
     </IonPage>
   );
