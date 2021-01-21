@@ -1,4 +1,4 @@
-/*
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');/*
  * Ionic Variables and Theming
  * ----------------------------------------------------------------------------
  * For more information, please see
@@ -30,7 +30,8 @@
   --ion-color-primary-tint: #4c8dff;
 
   /** secondary **/
-  --ion-color-secondary: #3dc2ff;
+    --ion-font-family: Nunito, ‘sans-serif’ !important;
+   --ion-color-secondary: #3dc2ff;
   --ion-color-secondary-rgb: 61, 194, 255;
   --ion-color-secondary-contrast: #ffffff;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
@@ -226,19 +227,35 @@
  * https://ionicframework.com/docs/theming/css-variables#ionic-variables
  */
 
+/*:root {*/
+/*  --ion-headings-font-weight: 300;*/
+
+/*  --ion-color-angular: #ac282b;*/
+/*  --ion-color-communication: #8e8d93;*/
+/*  --ion-color-tooling: #fe4c52;*/
+/*  --ion-color-services: #fd8b2d;*/
+/*  --ion-color-design: #fed035;*/
+/*  --ion-color-workshop: #69bb7b;*/
+/*  --ion-color-food: #3bc7c4;*/
+/*  --ion-color-documentation: #b16be3;*/
+/*  --ion-color-navigation: #6600cc;*/
+/*}*/
 :root {
   --ion-headings-font-weight: 300;
 
-  --ion-color-angular: #ac282b;
-  --ion-color-communication: #8e8d93;
+  --ion-color-angular: #F25e5a;
+  --ion-color-communication: #ffAE00;
   --ion-color-tooling: #fe4c52;
-  --ion-color-services: #fd8b2d;
-  --ion-color-design: #fed035;
-  --ion-color-workshop: #69bb7b;
-  --ion-color-food: #3bc7c4;
+  --ion-color-services: #ffAE00;
+  --ion-color-design: #FFF588;
+  --ion-color-workshop: #99DD1C;
+  --ion-color-food: #25B0E9;
   --ion-color-documentation: #b16be3;
-  --ion-color-navigation: #6600cc;
+  --ion-color-navigation: #9D4ED5;
 }
+
+
+
 
 /*
  * App iOS Variables
