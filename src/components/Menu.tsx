@@ -27,8 +27,7 @@ const routes = {
     { title: 'Live', path: '/tabs/live', icon: cameraOutline },
     { title: 'Memories', path: '/tabs/memories', icon: peopleOutline },
     { title: 'Store', path: '/tabs/store', icon: briefcaseOutline },
-    { title: 'Library', path: '/tabs/library', icon: bookOutline },
-    { title: 'About', path: '/tabs/about', icon: informationCircleOutline }
+    { title: 'Library', path: '/tabs/library', icon: bookOutline }
   ]
 };
 

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+
 import {
   IonBackButton,
   IonButton,
@@ -9,19 +10,20 @@ import {
   IonItem,
   IonLabel,
   IonList,
+  IonLoading,
   IonPage,
-  IonText,
+  IonPopover,
+  IonProgressBar,
   IonToolbar
 } from '@ionic/react';
-import {connect} from '../../data/connect';
-import {RouteComponentProps, withRouter} from 'react-router';
-import * as selectors from '../../data/selectors';
-import {cloudDownload, share, star, starOutline} from 'ionicons/icons';
-import '../SessionDetail.scss';
+import '../About.scss';
+import {chevronForward, star} from 'ionicons/icons';
+import {RouteComponentProps} from "react-router";
+import {Session} from "../../models/Schedule";
 import {addFavorite, removeFavorite} from '../../data/sessions/sessions.actions';
-import {Session} from '../../models/Schedule';
 
-interface OwnProps extends RouteComponentProps { };
+interface OwnProps extends RouteComponentProps {
+};
 
 interface StateProps {
   session?: Session;
@@ -35,86 +37,107 @@ interface DispatchProps {
 
 type SessionDetailProps = OwnProps & StateProps & DispatchProps;
 
-const LibraryDetail: React.FC<SessionDetailProps> = ({ session, addFavorite, removeFavorite, favoriteSessions }) => {
 
-  if (!session) {
-    return <div>Session not found</div>
-  }
+const LibraryDetail: React.FC<SessionDetailProps> = ({session, addFavorite, removeFavorite, favoriteSessions}) => {
+  const [showLoading, setShowLoading] = useState(false);
+  const [showPlayer, setShowingPlayer] = useState(false);
 
-  const isFavorite = favoriteSessions.indexOf(session.id) > -1;
+  const [showPopover, setShowPopover] = useState(false);
+  const [location, setLocation] = useState<'madison' | 'austin' | 'chicago' | 'seattle'>('madison');
+  const [conferenceDate, setConferenceDate] = useState('2047-05-17T00:00:00-05:00');
 
-  const toggleFavorite = () => {
-    isFavorite ? removeFavorite(session.id) : addFavorite(session.id);
-  };
-  const shareSession = () => { };
-  const sessionClick = (text: string) => {
-    console.log(`Clicked ${text}`);
-  };
 
   return (
-    <IonPage id="session-detail-page">
-      <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton defaultHref="/tabs/schedule"></IonBackButton>
-          </IonButtons>
-          <IonButtons slot="end">
-            <IonButton onClick={() => toggleFavorite()}>
-              {isFavorite ?
-                <IonIcon slot="icon-only" icon={star}></IonIcon> :
-                <IonIcon slot="icon-only" icon={starOutline}></IonIcon>
-              }
-            </IonButton>
-            <IonButton onClick={() => shareSession}>
-              <IonIcon slot="icon-only" icon={share}></IonIcon>
-            </IonButton>
-          </IonButtons>
-        </IonToolbar>
-      </IonHeader>
+
+
+    <IonPage id="about-page">
+      <IonLoading
+        isOpen={showLoading}
+        duration={1500}
+        spinner="crescent"
+        onDidDismiss={() => setShowLoading(false)}
+
+      />
+      {/*<IonPopover*/}
+      {/*  isOpen={showPlayer}*/}
+      {/*  onDidDismiss={e => {*/}
+      {/*    setShowingPlayer(false)*/}
+      {/*  }}*/}
+      {/*>*/}
+      {/*</IonPopover>*/}
+
+      <IonPopover
+        isOpen={showPopover}
+        onDidDismiss={e => {
+          setShowPopover(false)
+        }}
+      >
+
+        <br/>
+        <IonProgressBar type="indeterminate"></IonProgressBar><br/>
+        <IonProgressBar type="indeterminate" reversed={true}></IonProgressBar><br/>
+      </IonPopover>
+
       <IonContent>
-        <div className="ion-padding">
-          <h1>{session.name}</h1>
-          {session.tracks.map(track => (
-            <span key={track} className={`session-track-${track.toLowerCase()}`}>{track}</span>
-          ))}
-          <p>{session.description}</p>
-          <IonText color="medium">
-            {session.timeStart} &ndash; {session.timeEnd}
-            <br />
-            {session.location}
-          </IonText>
+        <IonHeader>
+          <IonToolbar>
+            <IonButtons slot="start">
+              <IonBackButton defaultHref="/tabs/schedule"></IonBackButton>
+            </IonButtons>
+            <IonButtons slot="end">
+              <IonButton onClick={() => {
+              }}>
+              </IonButton>
+              <IonButton onClick={() => {
+              }}>
+                <IonIcon slot="icon-only" icon={star}></IonIcon> :
+              </IonButton>
+            </IonButtons>
+          </IonToolbar>
+        </IonHeader>
+
+        <div className="about-header">
+          {/* Instead of loading an image each time the select changes, use opacity to transition them */}
+          <div className="about-image madison" style={{'opacity': location === 'madison' ? '1' : undefined}}></div>
+          <div className="about-image austin" style={{'opacity': location === 'austin' ? '1' : undefined}}></div>
+          <div className="about-image chicago" style={{'opacity': location === 'chicago' ? '1' : undefined}}></div>
+          <div className="about-image seattle" style={{'opacity': location === 'seattle' ? '1' : undefined}}></div>
         </div>
-        <IonList>
-          <IonItem onClick={() => sessionClick('watch')} button>
-            <IonLabel color="primary">Watch</IonLabel>
-          </IonItem>
-          <IonItem onClick={() => sessionClick('add to calendar')} button>
-            <IonLabel color="primary">Add to Calendar</IonLabel>
-          </IonItem>
-          <IonItem onClick={() => sessionClick('mark as unwatched')} button>
-            <IonLabel color="primary">Mark as Unwatched</IonLabel>
-          </IonItem>
-          <IonItem onClick={() => sessionClick('download video')} button>
-            <IonLabel color="primary">Download Video</IonLabel>
-            <IonIcon slot="end" color="primary" size="small" icon={cloudDownload}></IonIcon>
-          </IonItem>
-          <IonItem onClick={() => sessionClick('leave feedback')} button>
-            <IonLabel color="primary">Leave Feedback</IonLabel>
-          </IonItem>
-        </IonList>
+        <div className="about-info">
+          <h3 className="ion-padding-top ion-padding-start">Song Name</h3>
+
+          <h3 className="ion-padding-top ion-padding-start">Options</h3>
+
+          <IonList>
+            <IonItem onClick={() => setShowPopover(true)} button>
+              <IonLabel color="primary">Play On Story Teller</IonLabel>
+              <IonIcon slot="end" color="primary" size="small" icon={chevronForward}></IonIcon>
+            </IonItem>
+
+            <IonItem onClick={() => setShowPopover(true)} button>
+              <IonLabel color="primary">Preview</IonLabel>
+            </IonItem>
+
+
+            <IonItem onClick={() => {
+            }} button>
+              <IonLabel color="danger">Delete</IonLabel>
+            </IonItem>
+          </IonList>
+
+
+          <h3 className="ion-padding-top ion-padding-start">{`About Song`}</h3>
+
+          <p className="ion-padding-start ion-padding-end">
+            Description of the song. This is a paragraph of how to song came to be.
+
+          </p>
+
+
+        </div>
       </IonContent>
     </IonPage>
   );
 };
 
-export default connect<OwnProps, StateProps, DispatchProps>({
-  mapStateToProps: (state, OwnProps) => ({
-    session: selectors.getSession(state, OwnProps),
-    favoriteSessions: state.data.favorites
-  }),
-  mapDispatchToProps: {
-    addFavorite,
-    removeFavorite
-  },
-  component: withRouter(LibraryDetail)
-})
+export default React.memo(LibraryDetail);

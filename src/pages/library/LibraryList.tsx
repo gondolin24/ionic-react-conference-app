@@ -1,4 +1,4 @@
-import {AlertButton, IonAlert, IonItemDivider, IonItemGroup, IonLabel, IonList, IonListHeader} from '@ionic/react';
+import {AlertButton, IonAlert, IonItemDivider, IonItemGroup, IonLabel, IonList} from '@ionic/react';
 import React, {useCallback, useState} from 'react';
 import {Schedule, Session} from '../../models/Schedule';
 import LibraryItem from './LibraryItem';
@@ -40,10 +40,10 @@ const LibraryList: React.FC<SessionListProps> = ({addFavorite, removeFavorite, f
     <>
       <IonList style={hide ? {display: 'none'} : {}}>
         {schedule.groups.map((group, index: number) => (
-          <IonItemGroup key={`group-${index}`}>
+          <IonItemGroup key={`t-group-${index}`}>
             <IonItemDivider sticky>
               <IonLabel>
-                {group.time}
+                {`Category ${index}`}
               </IonLabel>
             </IonItemDivider>
             {group.sessions.map((session: Session, sessionIndex: number) => (

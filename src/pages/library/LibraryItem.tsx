@@ -58,8 +58,6 @@ const LibraryItem: React.FC<SessionListItemProps> = ({ isFavorite, onAddFavorite
         <IonLabel>
           <h3>{session.name}</h3>
           <p>
-            {session.timeStart}&mdash;&nbsp;
-            {session.timeStart}&mdash;&nbsp;
             {session.location}
           </p>
         </IonLabel>

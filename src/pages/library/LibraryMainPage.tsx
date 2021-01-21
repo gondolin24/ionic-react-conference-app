@@ -13,13 +13,10 @@ import {
   IonRefresher,
   IonRefresherContent,
   IonSearchbar,
-  IonSegment,
-  IonSegmentButton,
   IonTitle,
-  IonToast,
   IonToolbar
 } from '@ionic/react';
-import {options, search} from 'ionicons/icons';
+import {search} from 'ionicons/icons';
 
 import SessionList from '../../components/SessionList';
 import SessionListFilter from '../../components/SessionListFilter';
@@ -30,6 +27,7 @@ import * as selectors from '../../data/selectors';
 import {connect} from '../../data/connect';
 import {setSearchText} from '../../data/sessions/sessions.actions';
 import {Schedule} from '../../models/Schedule';
+import LibraryList from "./LibraryList";
 
 interface OwnProps {
 }
@@ -86,11 +84,6 @@ const LibraryMainPage: React.FC<SchedulePageProps> = ({favoritesSchedule, schedu
               <IonIcon slot="icon-only" icon={search}></IonIcon>
             </IonButton>
             }
-            {!showSearchbar &&
-            <IonButton onClick={() => setShowFilterModal(true)}>
-              {mode === 'ios' ? 'Filter' : <IonIcon icon={options} slot="icon-only"/>}
-            </IonButton>
-            }
           </IonButtons>
         </IonToolbar>
 
@@ -113,12 +106,12 @@ const LibraryMainPage: React.FC<SchedulePageProps> = ({favoritesSchedule, schedu
         </IonRefresher>
 
 
-        <SessionList
+        <LibraryList
           schedule={schedule}
           listType={segment}
           hide={segment === 'favorites'}
         />
-        <SessionList
+        <LibraryList
           // schedule={schedule}
           schedule={favoritesSchedule}
           listType={segment}
