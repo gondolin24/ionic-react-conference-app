@@ -96,7 +96,7 @@ const MainStore: React.FC<SchedulePageProps> = ({favoritesSchedule, schedule, se
         </IonToolbar>
 
         <IonToolbar>
-          <IonSegment value={segment} onIonChange={(e) => setSegment(e.detail.value as any)}>
+          <IonSegment value={segment} onIonChange={(e) => setSegment(e.detail.value as any)} >
             <IonSegmentButton value="all">
               SONGS
             </IonSegmentButton>
