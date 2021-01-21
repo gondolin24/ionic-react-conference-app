@@ -82,3 +82,9 @@ yarn-error.log*
 
 .stencil/
 /node_modules/
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/story-teller.iml
+/.idea/vcs.xml
