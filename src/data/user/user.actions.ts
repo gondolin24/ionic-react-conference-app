@@ -1,6 +1,6 @@
-import { getUserData, setIsLoggedInData, setUsernameData, setHasSeenTutorialData } from '../dataApi';
-import { ActionType } from '../../util/types';
-import { UserState } from './user.state';
+import {getUserData, setIsLoggedInData, setUsernameData} from '../dataApi';
+import {ActionType} from '../../util/types';
+import {UserState} from './user.state';
 
 
 export const loadUserData = () => async (dispatch: React.Dispatch<any>) => {
@@ -42,12 +42,11 @@ export const setUsername = (username?: string) => async (dispatch: React.Dispatc
 };
 
 export const setHasSeenTutorial = (hasSeenTutorial: boolean) => async (dispatch: React.Dispatch<any>) => {
-  await setHasSeenTutorialData(hasSeenTutorial);
   return ({
     type: 'set-has-seen-tutorial',
-    hasSeenTutorial
+    hasSeenTutorial: true
   } as const);
-} 
+}
 
 export const setDarkMode = (darkMode: boolean) => ({
   type: 'set-dark-mode',

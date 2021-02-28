@@ -82,7 +82,7 @@ const LibraryDetail: React.FC<SessionDetailProps> = ({session, addFavorite, remo
         <IonHeader>
           <IonToolbar>
             <IonButtons slot="start">
-              <IonBackButton defaultHref="/tabs/schedule"></IonBackButton>
+              <IonBackButton defaultHref="/tabs/live"></IonBackButton>
             </IonButtons>
             <IonButtons slot="end">
               <IonButton onClick={() => {
